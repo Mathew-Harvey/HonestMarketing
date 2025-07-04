@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honest Marketing - For Companies Tired of Marketing</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --accent: #0066cc;
+            --border: #333333;
+            --subtle: #666666;
+            --highlight: #ffeb3b;
+            --card-bg: #f9f9f9;
+        }
+        
+        /* E-reader theme - like pencil on paper */
+        [data-theme="reader"] {
+            --bg: #f8f6f1;
+            --text: #2b2b2b;
+            --accent: #5a4a42;
+            --border: #8b7969;
+            --subtle: #6b5d54;
+            --highlight: #e8daa6;
+            --card-bg: #faf9f5;
+            font-family: Georgia, serif;
+        }
+        
+        /* Tech bro theme - minimal, sans-serif */
+        [data-theme="tech"] {
+            --bg: #fafafa;
+            --text: #1d1d1f;
+            --accent: #0071e3;
+            --border: #d2d2d7;
+            --subtle: #86868b;
+            --highlight: #fbf719;
+            --card-bg: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+        }
+        
+        /* Accessibility theme - high contrast, larger text */
+        [data-theme="accessible"] {
+            --bg: #ffffff;
+            --text: #000000;
+            --accent: #0000ff;
+            --border: #000000;
+            --subtle: #333333;
+            --highlight: #ffff00;
+            --card-bg: #f0f0f0;
+            font-size: 120%;
+            font-weight: 500;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        
+        .theme-toggle select {
+            padding: 8px 12px;
+            border: 2px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        header {
+            border-bottom: 3px solid var(--border);
+            padding-bottom: 30px;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        
+        .tagline {
+            font-size: 1.4em;
+            color: var(--subtle);
+            margin-bottom: 20px;
+        }
+        
+        .mission {
+            font-size: 1.2em;
+            max-width: 800px;
+            background: var(--highlight);
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .section {
+            margin-bottom: 80px;
+        }
+        
+        h2 {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+        
+        .intro {
+            font-size: 1.15em;
+            margin-bottom: 40px;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+        
+        .scope-creep {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            padding: 30px;
+            margin: 40px 0;
+            font-family: monospace;
+            position: relative;
+        }
+        
+        .scope-creep h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .scope-creep .stage {
+            margin: 15px 0;
+            padding-left: 20px;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+        
+        .scope-creep .stage:nth-child(2) { animation-delay: 0.5s; }
+        .scope-creep .stage:nth-child(3) { animation-delay: 1s; }
+        .scope-creep .stage:nth-child(4) { animation-delay: 1.5s; }
+        .scope-creep .stage:nth-child(5) { animation-delay: 2s; }
+        .scope-creep .stage:nth-child(6) { animation-delay: 2.5s; }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .services {
+            display: grid;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-tier {
+            border: 3px solid var(--border);
+            padding: 30px;
+            background: var(--card-bg);
+            transition: transform 0.2s;
+            position: relative;
+        }
+        
+        .service-tier:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .service-tier h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .price {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+        
+        .service-tier ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .service-tier li {
+            padding: 10px 0;
+            border-bottom: 1px dotted var(--border);
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .service-tier li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        .service-tier li:last-child {
+            border-bottom: none;
+        }
+        
+        .perfect-for {
+            margin-top: 20px;
+            font-style: italic;
+            color: var(--subtle);
+            background: var(--bg);
+            padding: 10px;
+            border-left: 3px solid var(--accent);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            text-align: left;
+            padding: 15px;
+            border: 2px solid var(--border);
+        }
+        
+        th {
+            background: var(--accent);
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background: var(--card-bg);
+        }
+        
+        .philosophy {
+            background: var(--card-bg);
+            padding: 40px;
+            margin: 40px 0;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .philosophy h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .philosophy p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .contact {
+            background: var(--accent);
+            color: white;
+            padding: 50px;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .contact h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .contact p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        
+        button {
+            background: white;
+            color: var(--accent);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .auth-note {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            padding: 20px;
+            margin: 30px 0;
+            font-size: 0.95em;
+        }
+        
+        .auth-note code {
+            background: var(--highlight);
+            padding: 2px 6px;
+            font-family: monospace;
+        }
+        
+        #contact-info {
+            margin-top: 30px;
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        #contact-info a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .theme-toggle {
+                position: relative;
+                margin-bottom: 20px;
+            }
+            
+            table {
+                font-size: 0.85em;
+            }
+            
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle">
+        <select id="themeSelector" onchange="changeTheme(this.value)">
+            <option value="">Default</option>
+            <option value="reader">E-Reader</option>
+            <option value="tech">Tech Bro</option>
+            <option value="accessible">High Contrast</option>
+        </select>
+    </div>
+
+    <header>
+        <h1>Honest Marketing</h1>
+        <p class="tagline">For companies tired of marketing</p>
+        <div class="mission">
+            "We create marketing for companies tired of marketing. No hype, no spin, no BS - just clear communication about what your product does, who it's for, and why it matters. Because when you have a solid product, the truth is your best sales tool."
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>The Problem With Modern Marketing</h2>
+        <div class="intro">
+            <p>Every B2B SaaS promises to be "revolutionary" and "AI-powered." Every agency claims they'll "transform your business." Every product is "blazingly fast" until you actually try to use it.</p>
+            <p>We're different. We help companies communicate what they <strong>actually do</strong>, not what they wish they did. Because your customers are smart - they can smell BS from a mile away.</p>
+        </div>
+        
+        <div class="scope-creep">
+            <h3>The Typical Tech Bro Scope Creep Timeline:</h3>
+            <div class="stage">Day 1: "We just need a simple landing page"</div>
+            <div class="stage">Day 7: "Let's add React for interactivity"</div>
+            <div class="stage">Day 14: "We should use Next.js for SEO"</div>
+            <div class="stage">Day 21: "Let's add a GraphQL API"</div>
+            <div class="stage">Day 30: "Why does our contact form take 4 seconds to load?"</div>
+            <div class="stage">Day 45: "Maybe we should have just used HTML..."</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Our Philosophy: Simple Is Powerful</h2>
+        <div class="philosophy">
+            <h3>Raw HTML is amazing and just works.</h3>
+            <p>Add a little CSS and it's beautiful. Sprinkle in some JavaScript only when you actually need it. That's it. That's the secret.</p>
+            <p>While everyone else is debugging their 47 dependencies, your site is already loaded. While they're explaining their "tech stack," you're making sales.</p>
+            <p>We believe in progressive enhancement, not progressive complications.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>How We Build Honest Websites</h2>
+        <div class="services">
+            <div class="service-tier">
+                <h3>Tier 1: The Truth Teller</h3>
+                <div class="price">$1,000 - $3,000 + $100/month</div>
+                <ul>
+                    <li>Pure HTML that loads instantly</li>
+                    <li>CSS that makes it beautiful</li>
+                    <li>Contact forms that just email you</li>
+                    <li>Zero dependencies, zero problems</li>
+                    <li>Hosted free on GitHub Pages</li>
+                </ul>
+                <p class="perfect-for">Perfect for: Consultants, small businesses, anyone who just needs to exist online without the drama</p>
+            </div>
+
+            <div class="service-tier">
+                <h3>Tier 2: The Data Keeper</h3>
+                <div class="price">$5,000 - $8,000 + $200/month</div>
+                <ul>
+                    <li>Simple Node.js backend</li>
+                    <li>PostgreSQL for real data (or MongoDB if you insist)</li>
+                    <li>Forms that actually save things</li>
+                    <li>Basic admin panel (no PhD required)</li>
+                    <li>Analytics showing actual humans, not bots</li>
+                </ul>
+                <p class="perfect-for">Perfect for: SaaS MVPs, booking systems, any business that needs to remember things</p>
+            </div>
+
+            <div class="service-tier">
+                <h3>Tier 3: The Member's Club</h3>
+                <div class="price">$10,000 - $15,000 + $400/month</div>
+                <ul>
+                    <li>User accounts that actually work</li>
+                    <li>Secure authentication (we use Clerk or Auth0)</li>
+                    <li>Personal dashboards</li>
+                    <li>Still just one server, not a kubernetes cluster</li>
+                    <li>Documentation your team can understand</li>
+                </ul>
+                <div class="auth-note">
+                    <strong>Security Note:</strong> We don't roll our own auth. We use battle-tested solutions like <code>Clerk</code>, <code>Auth0</code>, or <code>Supabase Auth</code>. Because being honest means admitting when others do it better.
+                </div>
+                <p class="perfect-for">Perfect for: Communities, SaaS products, member portals</p>
+            </div>
+
+            <div class="service-tier">
+                <h3>Tier 4: The API First</h3>
+                <div class="price">$15,000 - $25,000 + $600/month</div>
+                <ul>
+                    <li>Clean REST API (or GraphQL if you must)</li>
+                    <li>Multiple themes users can choose</li>
+                    <li>AI agents can actually interact with it</li>
+                    <li>Swagger docs that make sense</li>
+                    <li>Ready for whatever comes next</li>
+                </ul>
+                <p class="perfect-for">Perfect for: Platforms, tech companies, "we might need to scale" businesses</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Honest Comparisons</h2>
+        <table>
+            <tr>
+                <th>What They Say</th>
+                <th>What They Mean</th>
+                <th>What We Say</th>
+            </tr>
+            <tr>
+                <td>"AI-Powered"</td>
+                <td>We call the ChatGPT API</td>
+                <td>We use APIs when they add value</td>
+            </tr>
+            <tr>
+                <td>"Blazingly Fast"</td>
+                <td>Fast after 5 seconds of loading</td>
+                <td>Under 1 second, measured</td>
+            </tr>
+            <tr>
+                <td>"Enterprise Ready"</td>
+                <td>We added SSO last week</td>
+                <td>Here's what scale we've tested</td>
+            </tr>
+            <tr>
+                <td>"Revolutionary Platform"</td>
+                <td>We combined 3 existing tools</td>
+                <td>Here's exactly what we built</td>
+            </tr>
+            <tr>
+                <td>"Cutting Edge Tech Stack"</td>
+                <td>Whatever's trending on HN</td>
+                <td>HTML, CSS, JS - boring but works</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="section">
+        <h2>What We Actually Do</h2>
+        <div class="intro">
+            <p>We're not just web developers. We're translators. We take your complex product and translate it into clear, honest language that your customers understand.</p>
+            <p>We help you:</p>
+            <ul style="font-size: 1.1em; line-height: 2; margin-left: 40px;">
+                <li>Identify what makes your product genuinely valuable</li>
+                <li>Communicate that value without exaggeration</li>
+                <li>Build trust through transparency</li>
+                <li>Create websites that reflect your honesty</li>
+                <li>Stand out by being refreshingly real</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="contact">
+        <h2>Ready for Marketing That Doesn't Feel Like Marketing?</h2>
+        <p>Let's have an honest conversation about your product and who actually needs it.</p>
+        <button onclick="showContact()">Start Being Honest</button>
+        <div id="contact-info" style="display: none;">
+            <p>Email: <a href="mailto:hello@honestmarketing.com">hello@honestmarketing.com</a></p>
+            <p>Book a call: <a href="#">calendly.com/honest-marketing</a></p>
+            <p>Or just pick up the phone: +1 (555) HONEST-1</p>
+        </div>
+    </section>
+
+    <script>
+        // Theme switching
+        function changeTheme(theme) {
+            if (theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.removeItem('theme');
+            }
+        }
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.getElementById('themeSelector').value = savedTheme;
+            changeTheme(savedTheme);
+        }
+        
+        // Contact toggle
+        function showContact() {
+            const info = document.getElementById('contact-info');
+            info.style.display = info.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        // Proper load time calculation
+        window.addEventListener('load', function() {
+            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+            console.log(`This page loaded in ${loadTime}ms. Try that with your "blazingly fast" React app.`);
+            console.log('Oh, and view source. It\'s all here. No build process, no bundling, no BS.');
+        });
+        
+        // Easter egg for developers
+        console.log('%cHiring developers?', 'font-size: 20px; font-weight: bold; color: #0066cc;');
+        console.log('Show them this source code. If they complain it\'s "too simple," they\'re part of the problem.');
+    </script>
+</body>
+</html>
