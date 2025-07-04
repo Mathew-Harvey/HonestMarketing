@@ -4,435 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Honest Marketing - Clear Communication for Real Businesses</title>
-    <style>
-        :root {
-            --bg: #ffffff;
-            --text: #000000;
-            --accent: #0066cc;
-            --border: #333333;
-            --subtle: #666666;
-            --highlight: #ffeb3b;
-            --card-bg: #f9f9f9;
-        }
-        
-        /* E-reader theme - like pencil on paper */
-        [data-theme="reader"] {
-            --bg: #f8f6f1;
-            --text: #2b2b2b;
-            --accent: #5a4a42;
-            --border: #8b7969;
-            --subtle: #6b5d54;
-            --highlight: #e8daa6;
-            --card-bg: #faf9f5;
-            font-family: Georgia, serif;
-        }
-        
-        /* Tech bro theme - minimal, sans-serif */
-        [data-theme="tech"] {
-            --bg: #fafafa;
-            --text: #1d1d1f;
-            --accent: #0071e3;
-            --border: #d2d2d7;
-            --subtle: #86868b;
-            --highlight: #fbf719;
-            --card-bg: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-        }
-        
-        /* Accessibility theme - high contrast, larger text */
-        [data-theme="accessible"] {
-            --bg: #ffffff;
-            --text: #000000;
-            --accent: #0000ff;
-            --border: #000000;
-            --subtle: #333333;
-            --highlight: #ffff00;
-            --card-bg: #f0f0f0;
-            font-size: 120%;
-            font-weight: 500;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background: var(--bg);
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            transition: all 0.3s ease;
-        }
-        
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-        }
-        
-        .theme-toggle select {
-            padding: 8px 12px;
-            border: 2px solid var(--border);
-            background: var(--bg);
-            color: var(--text);
-            font-size: 14px;
-            cursor: pointer;
-        }
-        
-        header {
-            border-bottom: 3px solid var(--border);
-            padding-bottom: 30px;
-            margin-bottom: 50px;
-        }
-        
-        h1 {
-            font-size: 3em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-        
-        .tagline {
-            font-size: 1.4em;
-            color: var(--subtle);
-            margin-bottom: 20px;
-        }
-        
-        .mission {
-            font-size: 1.2em;
-            max-width: 800px;
-            background: var(--highlight);
-            padding: 20px;
-            margin-top: 20px;
-            border-left: 4px solid var(--accent);
-        }
-        
-        .section {
-            margin-bottom: 80px;
-        }
-        
-        h2 {
-            font-size: 2.2em;
-            font-weight: bold;
-            margin-bottom: 30px;
-            color: var(--accent);
-        }
-        
-        .intro {
-            font-size: 1.15em;
-            margin-bottom: 40px;
-            max-width: 800px;
-            line-height: 1.8;
-        }
-        
-        .philosophy {
-            background: var(--card-bg);
-            padding: 40px;
-            margin: 40px 0;
-            border-left: 5px solid var(--accent);
-        }
-        
-        .philosophy h3 {
-            color: var(--accent);
-            margin-bottom: 20px;
-        }
-        
-        .philosophy p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-        
-        .services {
-            display: grid;
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .service-tier {
-            border: 3px solid var(--border);
-            padding: 30px;
-            background: var(--card-bg);
-            transition: transform 0.2s;
-            position: relative;
-        }
-        
-        .service-tier:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .service-tier h3 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-        
-        .price {
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            color: var(--text);
-        }
-        
-        .service-tier ul {
-            list-style: none;
-            margin: 20px 0;
-        }
-        
-        .service-tier li {
-            padding: 10px 0;
-            border-bottom: 1px dotted var(--border);
-            position: relative;
-            padding-left: 25px;
-        }
-        
-        .service-tier li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-        
-        .service-tier li:last-child {
-            border-bottom: none;
-        }
-        
-        .perfect-for {
-            margin-top: 20px;
-            font-style: italic;
-            color: var(--subtle);
-            background: var(--bg);
-            padding: 10px;
-            border-left: 3px solid var(--accent);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        th, td {
-            text-align: left;
-            padding: 15px;
-            border: 2px solid var(--border);
-        }
-        
-        th {
-            background: var(--accent);
-            color: white;
-            font-weight: bold;
-        }
-        
-        tr:nth-child(even) {
-            background: var(--card-bg);
-        }
-        
-        .contact {
-            background: var(--accent);
-            color: white;
-            padding: 50px;
-            text-align: center;
-            margin-top: 80px;
-        }
-        
-        .contact h2 {
-            color: white;
-            margin-bottom: 20px;
-        }
-        
-        .contact p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-        }
-        
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        .team-member {
-            background: var(--card-bg);
-            padding: 30px;
-            border-left: 4px solid var(--accent);
-            text-align: center;
-        }
-        
-        .team-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: var(--border);
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 14px;
-        }
-        
-        .team-member h3 {
-            color: var(--accent);
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        
-        .team-member .role {
-            font-weight: bold;
-            color: var(--subtle);
-            margin-bottom: 15px;
-        }
-        
-        .team-member p {
-            line-height: 1.8;
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        
-        .fun-fact {
-            font-size: 0.95em;
-            color: var(--subtle);
-            border-top: 1px dotted var(--border);
-            padding-top: 15px;
-            margin-top: 15px;
-            text-align: left;
-        }
-        
-        .case-studies {
-            display: grid;
-            gap: 40px;
-            margin-top: 40px;
-        }
-        
-        .case-study {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            padding: 40px;
-            background: var(--card-bg);
-            border: 2px solid var(--border);
-        }
-        
-        .case-study:nth-child(even) {
-            grid-template-columns: 1fr 1fr;
-        }
-        
-        .case-study:nth-child(even) .case-content {
-            order: 2;
-        }
-        
-        .case-study:nth-child(even) .case-preview {
-            order: 1;
-        }
-        
-        .case-content h3 {
-            font-size: 1.8em;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-        
-        .case-content h4 {
-            color: var(--subtle);
-            margin-bottom: 20px;
-        }
-        
-        .case-preview {
-            background: var(--border);
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .case-preview a {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: var(--accent);
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        
-        .results {
-            background: var(--highlight);
-            padding: 15px;
-            margin-top: 20px;
-            border-left: 3px solid var(--accent);
-        }
-        
-        button {
-            background: white;
-            color: var(--accent);
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        #contact-info {
-            margin-top: 30px;
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 5px;
-        }
-        
-        #contact-info a {
-            color: white;
-            text-decoration: underline;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            .theme-toggle {
-                position: relative;
-                margin-bottom: 20px;
-            }
-            
-            .case-study {
-                grid-template-columns: 1fr;
-            }
-            
-            .case-study:nth-child(even) .case-content {
-                order: 1;
-            }
-            
-            .case-study:nth-child(even) .case-preview {
-                order: 2;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="theme-toggle">
@@ -444,246 +16,258 @@
         </select>
     </div>
 
-    <header>
-        <h1>Honest Marketing</h1>
-        <p class="tagline">Clear communication for companies with real value</p>
-        <div class="mission">
-            "We're a marketing strategy agency for companies tired of marketing BS. We help you communicate what your product actually does, who it's for, and why it matters. Because when you have something valuable to offer, the truth is your best marketing tool."
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Marketing without the BS</h1>
+                <p class="hero-subtitle">We help companies explain what they actually do by removing everything they don't need to say.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">0.5s</div>
+                        <div class="stat-label">Average load time</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">More qualified leads</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Unnecessary features</div>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <button class="cta-primary" onclick="showWork()">See our work</button>
+                    <button class="cta-secondary" onclick="document.querySelector('.services').scrollIntoView({behavior: 'smooth'})">Pricing</button>
+                </div>
+            </div>
         </div>
     </header>
 
-    <section class="section">
-        <h2>Marketing Without the Manipulation</h2>
-        <div class="intro">
-            <p>Your customers are smart. They've seen every trick, every "limited time offer," every manufactured urgency. They're tired of being sold to.</p>
-            <p>What they want is simple: to understand what you do and whether it will solve their problem. That's where we come in.</p>
-            <p>We're marketing strategists who believe in a radical approach: <strong>just tell the truth</strong>.</p>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2>Our Marketing Philosophy</h2>
-        <div class="philosophy">
-            <h3>Great products deserve clear communication.</h3>
-            <p>We start by understanding what makes your product genuinely valuable. Not what you wish it did, not what it might do someday, but what it actually does today that helps real people.</p>
-            <p>Then we craft messaging that communicates that value clearly. No jargon. No exaggeration. Just honest explanation of how you solve problems.</p>
-            <p>Finally, we build you a website that delivers this message effectively. Simple, fast, and focused on what matters: connecting you with the right customers.</p>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2>How We Transform Your Marketing</h2>
-        <table>
-            <tr>
-                <th>Traditional Marketing Says</th>
-                <th>Your Customers Think</th>
-                <th>We Help You Say</th>
-            </tr>
-            <tr>
-                <td>"Revolutionary AI-Powered Platform"</td>
-                <td>"But what does it actually do?"</td>
-                <td>"We automate X, saving you Y hours per week"</td>
-            </tr>
-            <tr>
-                <td>"Industry-Leading Solution"</td>
-                <td>"According to who?"</td>
-                <td>"Here's how we're different: [specific features]"</td>
-            </tr>
-            <tr>
-                <td>"Transform Your Business"</td>
-                <td>"That's quite a promise..."</td>
-                <td>"We help with [specific problem] by [specific method]"</td>
-            </tr>
-            <tr>
-                <td>"Cutting-Edge Technology"</td>
-                <td>"Will it work reliably?"</td>
-                <td>"Built on proven tech, 99.9% uptime last year"</td>
-            </tr>
-            <tr>
-                <td>"Sign Up Now!"</td>
-                <td>"Why the urgency?"</td>
-                <td>"Take your time. Here's a demo to explore."</td>
-            </tr>
-        </table>
-    </section>
-
-    <section class="section">
-        <h2>Marketing Solutions That Match Your Needs</h2>
-        <p class="intro">We deliver your honest message through websites designed to communicate, not complicate. Choose the solution that fits your business:</p>
-        <div class="services">
-            <div class="service-tier">
-                <h3>Foundation: Clear Presence</h3>
-                <div class="price">$1,000 - $3,000 + $100/month</div>
-                <ul>
-                    <li>Marketing strategy session to find your clear message</li>
-                    <li>Simple website that loads instantly (pure HTML/CSS)</li>
-                    <li>Compelling copy that explains your value</li>
-                    <li>Contact system that connects you with customers</li>
-                    <li>Monthly content updates to keep messaging fresh</li>
-                </ul>
-                <p class="perfect-for">Perfect for: Consultants, service businesses, anyone who needs to communicate value clearly</p>
+    <main>
+        <section class="section">
+            <div class="container">
+                <h2>Marketing Without the Manipulation</h2>
+                <div class="intro">
+                    <p>Your customers are smart. They've seen every trick, every "limited time offer," every manufactured urgency. They're tired of being sold to.</p>
+                    <p>What they want is simple: to understand what you do and whether it will solve their problem. That's where we come in.</p>
+                    <p>We're marketing strategists who believe in a radical approach: <strong>just tell the truth</strong>. And the corollary: <strong>remove everything else</strong>.</p>
+                </div>
             </div>
+        </section>
 
-            <div class="service-tier">
-                <h3>Growth: Capture & Convert</h3>
-                <div class="price">$5,000 - $8,000 + $200/month</div>
-                <ul>
-                    <li>In-depth marketing audit and positioning strategy</li>
-                    <li>Dynamic website with lead capture systems</li>
-                    <li>Email marketing integration</li>
-                    <li>Real analytics (actual humans, not vanity metrics)</li>
-                    <li>A/B testing to refine your message</li>
-                </ul>
-                <p class="perfect-for">Perfect for: Growing businesses, SaaS products, companies ready to scale</p>
-            </div>
-
-            <div class="service-tier">
-                <h3>Community: Build Trust</h3>
-                <div class="price">$10,000 - $15,000 + $400/month</div>
-                <ul>
-                    <li>Complete brand messaging framework</li>
-                    <li>Member portal with secure authentication</li>
-                    <li>Community features to build loyalty</li>
-                    <li>Content strategy for ongoing engagement</li>
-                    <li>Customer success tracking</li>
-                </ul>
-                <p class="perfect-for">Perfect for: Membership sites, communities, businesses built on relationships</p>
-            </div>
-
-            <div class="service-tier">
-                <h3>Platform: Scale Honestly</h3>
-                <div class="price">$15,000 - $25,000 + $600/month</div>
-                <ul>
-                    <li>Comprehensive marketing strategy across channels</li>
-                    <li>API-first website for integrations</li>
-                    <li>Multi-audience messaging (customers, partners, investors)</li>
-                    <li>Marketing automation that feels human</li>
-                    <li>Ongoing optimization based on real data</li>
-                </ul>
-                <p class="perfect-for">Perfect for: Platforms, marketplaces, companies with complex audiences</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2>Honest Marketing in Action</h2>
-        <p class="intro">See how clear communication and simple execution create real results:</p>
-        
-        <div class="case-studies">
-            <div class="case-study">
-                <div class="case-content">
-                    <h3>Marine Stream</h3>
-                    <h4>Challenge: Stand out in a crowded marine safety market</h4>
-                    <p>Marine Stream had innovative safety products but was lost in a sea of competitors all claiming to be "industry-leading." They needed to communicate their actual differentiators.</p>
-                    <p><strong>Our approach:</strong> We identified their unique value - local Australian support and proven reliability in harsh conditions. No fluff about "revolutionizing marine safety," just clear communication about what makes them different.</p>
-                    <div class="results">
-                        <strong>Result:</strong> 40% increase in qualified inquiries. Customers repeatedly mention they chose Marine Stream because "they actually explained how their products work."
+        <section class="section">
+            <div class="container">
+                <h2>Our Marketing Philosophy</h2>
+                <div class="philosophy">
+                    <h3>Marketing is understanding value and communicating it. Nothing more.</h3>
+                    <p>We start by understanding what makes your product genuinely valuable. Not what you wish it did, not what it might do someday, but what it actually does today that helps real people.</p>
+                    <p>Then we craft messaging that communicates that value clearly. No jargon. No exaggeration. No unnecessary elements. Just honest explanation of how you solve problems.</p>
+                    <p>Finally, we build you a website that delivers this message effectively. We follow a simple principle: <em>the best part is no part</em>. Every element earns its place by serving your message.</p>
+                    <div style="background: var(--color-subtle-bg, #f8f9fa); padding: var(--space-6, 1.5rem); margin: var(--space-6, 1.5rem) 0; border-left: 3px solid var(--color-primary, #2563eb);">
+                        <p style="margin: 0; font-style: italic;">"The best part is no part. It can't break if it doesn't exist. We remove everything that doesn't directly serve your customer's understanding."</p>
                     </div>
                 </div>
-                <div class="case-preview">
-                    <span>Marine Stream Website Preview</span>
-                    <a href="https://www.marinestream.com.au" target="_blank">Visit Site →</a>
-                </div>
             </div>
-            
-            <div class="case-study">
-                <div class="case-content">
-                    <h3>West Coast Multirotors</h3>
-                    <h4>Challenge: Explain complex drone services simply</h4>
-                    <p>Drone services often hide behind technical jargon. West Coast Multirotors needed to explain their value to non-technical decision makers in mining and agriculture.</p>
-                    <p><strong>Our approach:</strong> We translated technical capabilities into business benefits. Instead of specs and certifications, we focused on "here's what we can help you see and measure."</p>
-                    <div class="results">
-                        <strong>Result:</strong> Simplified sales process. Clients now come pre-educated about services, reducing sales cycle by 3 weeks on average.
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>How We Transform Your Marketing</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Traditional Marketing Says</th>
+                            <th>Your Customers Think</th>
+                            <th>We Help You Say</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"Revolutionary AI-Powered Platform"</td>
+                            <td>"But what does it actually do?"</td>
+                            <td>"We automate X, saving you Y hours per week"</td>
+                        </tr>
+                        <tr>
+                            <td>"Industry-Leading Solution"</td>
+                            <td>"According to who?"</td>
+                            <td>"Here's how we're different: [specific features]"</td>
+                        </tr>
+                        <tr>
+                            <td>"Transform Your Business"</td>
+                            <td>"That's quite a promise..."</td>
+                            <td>"We help with [specific problem] by [specific method]"</td>
+                        </tr>
+                        <tr>
+                            <td>"Cutting-Edge Technology"</td>
+                            <td>"Will it work reliably?"</td>
+                            <td>"Built on proven tech, 99.9% uptime last year"</td>
+                        </tr>
+                        <tr>
+                            <td>"All-in-One Solution"</td>
+                            <td>"Do I need all these features?"</td>
+                            <td>"We do three things well: [list them]"</td>
+                        </tr>
+                        <tr>
+                            <td>"Sign Up Now!"</td>
+                            <td>"Why the urgency?"</td>
+                            <td>"Take your time. Here's a demo to explore."</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Marketing Solutions That Match Your Needs</h2>
+                <p class="intro">We deliver your honest message through websites designed to communicate, not complicate. Every solution built on our core principle: include only what serves your customer's understanding.</p>
+                
+                <div class="services">
+                    <div class="service-tier">
+                        <h3>Foundation: Clear Presence</h3>
+                        <div class="price">$1,000 - $3,000 + $100/month</div>
+                        <ul>
+                            <li>Marketing strategy session to identify your essential value</li>
+                            <li>Minimal website that loads instantly (pure HTML/CSS, zero frameworks)</li>
+                            <li>Compelling copy that removes confusion, adds clarity</li>
+                            <li>Simple contact system (no unnecessary form fields)</li>
+                            <li>Monthly content review to remove outdated messaging</li>
+                        </ul>
+                        <p class="perfect-for">Perfect for: Consultants, service businesses, anyone who needs to communicate value clearly</p>
+                    </div>
+
+                    <div class="service-tier">
+                        <h3>Growth: Capture & Convert</h3>
+                        <div class="price">$5,000 - $8,000 + $200/month</div>
+                        <ul>
+                            <li>In-depth marketing audit to eliminate what's not working</li>
+                            <li>Streamlined website with essential lead capture only</li>
+                            <li>Email marketing integration (quality over quantity)</li>
+                            <li>Real analytics (measure what matters, ignore vanity metrics)</li>
+                            <li>Testing to simplify, not complicate, your message</li>
+                        </ul>
+                        <p class="perfect-for">Perfect for: Growing businesses, SaaS products, companies ready to scale</p>
+                    </div>
+
+                    <div class="service-tier">
+                        <h3>Community: Build Trust</h3>
+                        <div class="price">$10,000 - $15,000 + $400/month</div>
+                        <ul>
+                            <li>Focused brand messaging framework (core message only)</li>
+                            <li>Member portal with essential features, zero bloat</li>
+                            <li>Community features that serve a clear purpose</li>
+                            <li>Content strategy focused on value, not volume</li>
+                            <li>Success tracking that measures real engagement</li>
+                        </ul>
+                        <p class="perfect-for">Perfect for: Membership sites, communities, businesses built on relationships</p>
+                    </div>
+
+                    <div class="service-tier">
+                        <h3>Platform: Scale Honestly</h3>
+                        <div class="price">$15,000 - $25,000 + $600/month</div>
+                        <ul>
+                            <li>Comprehensive strategy that eliminates channel confusion</li>
+                            <li>API-first website built for essential integrations only</li>
+                            <li>Multi-audience messaging without diluting core value</li>
+                            <li>Marketing automation that feels human, not robotic</li>
+                            <li>Continuous optimization: add value, remove friction</li>
+                        </ul>
+                        <p class="perfect-for">Perfect for: Platforms, marketplaces, companies with complex audiences</p>
                     </div>
                 </div>
-                <div class="case-preview">
-                    <span>West Coast Multirotors Preview</span>
-                    <a href="https://westcoastmultirotors.com.au" target="_blank">Visit Site →</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Honest Marketing in Action</h2>
+                <p class="intro">See how clear communication and simple execution create real results. In each case, success came from removing what didn't work:</p>
+                
+                <div class="case-studies">
+                    <div class="case-study">
+                        <div class="case-content">
+                            <h3>Marine Stream</h3>
+                            <h4>Challenge: Stand out in a crowded marine safety market</h4>
+                            <p>Marine Stream had innovative safety products but was lost in a sea of competitors all claiming to be "industry-leading." They needed to communicate their actual differentiators.</p>
+                            <p><strong>Our approach:</strong> We removed the industry jargon and lengthy feature lists. Instead, we focused on their unique value - local Australian support and proven reliability in harsh conditions. We stripped away everything that didn't directly serve customer understanding.</p>
+                            <div class="results">
+                                <strong>Result:</strong> 40% increase in qualified inquiries. Customers repeatedly mention they chose Marine Stream because "they actually explained how their products work" without the typical sales noise.
+                            </div>
+                        </div>
+                        <div class="case-preview">
+                            <span>Marine Stream Website Preview</span>
+                            <a href="https://www.marinestream.com.au" target="_blank">Visit Site →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="case-study">
+                        <div class="case-content">
+                            <h3>West Coast Multirotors</h3>
+                            <h4>Challenge: Explain complex drone services simply</h4>
+                            <p>Drone services often hide behind technical jargon. West Coast Multirotors needed to explain their value to non-technical decision makers in mining and agriculture.</p>
+                            <p><strong>Our approach:</strong> We eliminated technical specifications and certifications from the main message. Instead of specs and credentials, we focused on "here's what we can help you see and measure." Every unnecessary complexity was removed.</p>
+                            <div class="results">
+                                <strong>Result:</strong> Simplified sales process. Clients now come pre-educated about services, reducing sales cycle by 3 weeks on average. Prospects say the site "finally explains what drone services actually do."
+                            </div>
+                        </div>
+                        <div class="case-preview">
+                            <span>West Coast Multirotors Preview</span>
+                            <a href="https://westcoastmultirotors.com.au" target="_blank">Visit Site →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <p style="text-align: center; margin-top: var(--space-12); color: var(--color-subtle); font-style: italic;">
+                    Both sites load in under 0.5 seconds. No frameworks, no plugins, no unnecessary code. Just clear communication that works.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Meet Your Marketing Partners</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-photo">Mat's Photo</div>
+                        <h3>Mat Harvey</h3>
+                        <p class="role">Founder & Strategy Lead</p>
+                        <p>After years in tech marketing watching companies overpromise and underdeliver, Mat founded Honest Marketing on a simple principle: the truth sells better than fiction. He specializes in removing marketing complexity to reveal clear value propositions.</p>
+                        <p class="fun-fact"><strong>Favorite question:</strong> "Do we really need that part?"</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="team-photo">Skye's Photo</div>
+                        <h3>Skye Harvey</h3>
+                        <p class="role">Account Director & Brand Voice</p>
+                        <p>Skye ensures every client finds their authentic voice by eliminating everything that isn't essential. She's the guardian of clarity, making sure marketing messages resonate with real humans by removing the noise that confuses them.</p>
+                        <p class="fun-fact"><strong>Daily practice:</strong> "What can we remove to make this clearer?"</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="team-photo">Team Photo</div>
+                        <h3>Our Developer Network</h3>
+                        <p class="role">The Message Builders</p>
+                        <p>We partner with developers who understand that the best code is invisible to users. They build websites using minimal, proven technologies that load fast, work everywhere, and never get in the way of your message.</p>
+                        <p class="fun-fact"><strong>Shared belief:</strong> "The best feature is no feature. The best part is no part."</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <p style="text-align: center; margin-top: 40px; color: var(--subtle);">
-            <em>Both sites load in under 0.5 seconds. No frameworks, no fuss, just clear communication that works.</em>
-        </p>
-    </section>
+        </section>
+    </main>
 
-    <section class="section">
-        <h2>Meet Your Marketing Partners</h2>
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="team-photo">Mat's Photo</div>
-                <h3>Mat Harvey</h3>
-                <p class="role">Founder & Strategy Lead</p>
-                <p>After years in tech marketing watching companies overpromise and underdeliver, Mat founded Honest Marketing on a simple principle: the truth sells better than fiction. He translates complex products into clear value propositions.</p>
-                <p class="fun-fact"><strong>Favorite question:</strong> "But what does it actually do?"</p>
-            </div>
-            
-            <div class="team-member">
-                <div class="team-photo">Skye's Photo</div>
-                <h3>Skye Harvey</h3>
-                <p class="role">Account Director & Brand Voice</p>
-                <p>Skye ensures every client finds their authentic voice. She's the guardian of clarity, making sure marketing messages resonate with real humans, not just other marketers. Her superpower: turning features into stories that matter.</p>
-                <p class="fun-fact"><strong>Pet peeve:</strong> "Leverage synergies to drive stakeholder value"</p>
-            </div>
-            
-            <div class="team-member">
-                <div class="team-photo">Team Photo</div>
-                <h3>Our Developer Network</h3>
-                <p class="role">The Message Builders</p>
-                <p>We partner with developers who understand that the best code is invisible to users. They build websites that load fast, work everywhere, and never get in the way of your message.</p>
-                <p class="fun-fact"><strong>Shared belief:</strong> "The website should load before the logo finishes animating"</p>
+    <footer class="contact">
+        <div class="container">
+            <h2>Ready for Marketing That Respects Your Customers?</h2>
+            <p>Let's talk about your product, your customers, and how removing the unnecessary can transform your business communication.</p>
+            <button onclick="showContact()">Start a Conversation</button>
+            <div id="contact-info" style="display: none;">
+                <p>Email: <a href="mailto:hello@honestmarketing.com">hello@honestmarketing.com</a></p>
+                <p>Book a strategy call: <a href="#">calendly.com/honest-marketing</a></p>
+                <p>Perth, Western Australia</p>
             </div>
         </div>
-    </section>
+    </footer>
 
-    <section class="contact">
-        <h2>Ready for Marketing That Respects Your Customers?</h2>
-        <p>Let's talk about your product, your customers, and how honest communication can transform your business.</p>
-        <button onclick="showContact()">Start a Conversation</button>
-        <div id="contact-info" style="display: none;">
-            <p>Email: <a href="mailto:hello@honestmarketing.com">hello@honestmarketing.com</a></p>
-            <p>Book a strategy call: <a href="#">calendly.com/honest-marketing</a></p>
-            <p>Perth, Western Australia</p>
-        </div>
-    </section>
-
-    <script>
-        // Theme switching
-        function changeTheme(theme) {
-            if (theme) {
-                document.documentElement.setAttribute('data-theme', theme);
-                localStorage.setItem('theme', theme);
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.removeItem('theme');
-            }
-        }
-        
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            document.getElementById('themeSelector').value = savedTheme;
-            changeTheme(savedTheme);
-        }
-        
-        // Contact toggle
-        function showContact() {
-            const info = document.getElementById('contact-info');
-            info.style.display = info.style.display === 'none' ? 'block' : 'none';
-        }
-        
-        // Load time message
-        window.addEventListener('load', function() {
-            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-            console.log(`Page loaded in ${loadTime}ms.`);
-            console.log('No frameworks. No build process. Just HTML, CSS, and a tiny bit of JS.');
-            console.log('View source to see how simple effective marketing can be.');
-        });
-        
-        // For potential partners
-        console.log('%cLooking for honest marketing?', 'font-size: 20px; font-weight: bold; color: #0066cc;');
-        console.log('We believe in clarity over complexity. Get in touch: hello@honestmarketing.com');
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
